@@ -1,0 +1,53 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 30349,
+  "duration_api_ms": 29343,
+  "num_turns": 7,
+  "result": "Here is the complete list of classes that implement `SessionMsgListener`, including direct and indirect (through inheritance) implementors:\n\nRELEVANT_FILES_START\ncommon/transport/transport-api/src/main/java/org/thingsboard/server/common/transport/SessionMsgListener.java | the interface itself (for reference)\ncommon/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/session/DeviceSessionContext.java | directly implements SessionMsgListener\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewayDeviceSessionContext.java | directly implements SessionMsgListener (abstract class)\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/GatewayDeviceSessionContext.java | extends AbstractGatewayDeviceSessionContext \u2192 implements SessionMsgListener\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/SparkplugDeviceSessionContext.java | extends AbstractGatewayDeviceSessionContext \u2192 implements SessionMsgListener\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java | directly implements SessionMsgListener\ncommon/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/LwM2mSessionMsgListener.java | directly implements SessionMsgListener\ncommon/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java | directly implements SessionMsgListener\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/AbstractSyncSessionCallback.java | directly implements SessionMsgListener (abstract class)\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/GetAttributesSyncSessionCallback.java | extends AbstractSyncSessionCallback \u2192 implements SessionMsgListener\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/ToServerRpcSyncSessionCallback.java | extends AbstractSyncSessionCallback \u2192 implements SessionMsgListener\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java | directly implements SessionMsgListener\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "fdc619ea-115a-4d96-808a-30602b75dab5",
+  "total_cost_usd": 0.056498400000000004,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 2974,
+    "cache_read_input_tokens": 40973,
+    "output_tokens": 2202,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2974,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 2202,
+      "cacheReadInputTokens": 40973,
+      "cacheCreationInputTokens": 2974,
+      "webSearchRequests": 0,
+      "costUSD": 0.056498400000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "958f2960-db1b-4d14-862d-e3f301aceaa9",
+  "tool_calls": [
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep"
+  ]
+}

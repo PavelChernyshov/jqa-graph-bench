@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 11052,
+  "duration_api_ms": 10861,
+  "num_turns": 3,
+  "result": "RELEVANT_FILES_START\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityViewTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/RelationsQueryFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/SingleEntityFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EdgeTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityListFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityNameFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntitySearchQueryFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/ApiUsageStateFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/AssetTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/DeviceTypeFilter.java | implements EntityFilter\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "bf5f0062-50b5-4e4d-b44a-fc9504570d05",
+  "total_cost_usd": 0.0162072,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 816,
+    "cache_read_input_tokens": 11734,
+    "output_tokens": 641,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 816,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 641,
+      "cacheReadInputTokens": 11734,
+      "cacheCreationInputTokens": 816,
+      "webSearchRequests": 0,
+      "costUSD": 0.0162072,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "0157ee43-b79c-4c94-bf75-627ab0cf9d9a",
+  "tool_calls": [
+    "Grep",
+    "Grep"
+  ]
+}

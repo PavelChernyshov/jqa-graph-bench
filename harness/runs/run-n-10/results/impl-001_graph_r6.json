@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 14588,
+  "duration_api_ms": 14564,
+  "num_turns": 3,
+  "result": "Here are all classes that implement `SessionMsgListener`:\n\nRELEVANT_FILES_START\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewayDeviceSessionContext.java | implements SessionMsgListener (abstract base for gateway device sessions)\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/AbstractSyncSessionCallback.java | implements SessionMsgListener (abstract base for sync CoAP session callbacks)\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java | inner class CoapSessionListener implements SessionMsgListener\ncommon/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java | inner class HttpSessionListener implements SessionMsgListener\ncommon/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/session/DeviceSessionContext.java | implements SessionMsgListener (SNMP device session)\ncommon/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/LwM2mSessionMsgListener.java | implements SessionMsgListener (LwM2M session listener)\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java | implements SessionMsgListener (MQTT transport handler)\nRELEVANT_FILES_END\n\n**Summary:** 7 implementing types across 5 transport protocols \u2014 MQTT (2), CoAP (2), HTTP (1), SNMP (1), LwM2M (1). Two are inner classes living in their outer class's source file (`DefaultCoapClientContext` and `DeviceApiController`).",
+  "stop_reason": "end_turn",
+  "session_id": "d8fe8946-e510-4217-92f1-7063b71370af",
+  "total_cost_usd": 0.019696650000000003,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 737,
+    "cache_read_input_tokens": 24493,
+    "output_tokens": 638,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 737,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 638,
+      "cacheReadInputTokens": 24493,
+      "cacheCreationInputTokens": 737,
+      "webSearchRequests": 0,
+      "costUSD": 0.019696650000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "c06e9b55-5bcd-4ba9-add9-ffa856a73703",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__get_type_context"
+  ]
+}

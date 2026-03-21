@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Structural question experiment runner: loops questions x conditions, calls claude -p."""
 
+import argparse
 import json
 import os
 import signal
 import subprocess
 import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 _stop_requested = False
@@ -18,7 +21,7 @@ def _handle_sigint(signum, frame):
         print("\n  Force quit.")
         sys.exit(1)
     _stop_requested = True
-    print("\n  Ctrl+C received — will stop after current run finishes. Press again to force quit.")
+    print("\n  Ctrl+C received — will stop after current runs finish. Press again to force quit.")
 
 
 HARNESS_DIR = Path(__file__).parent
@@ -38,6 +41,14 @@ CONDITIONS = [
 
 MAX_BUDGET_USD = 0.30
 MODEL = "sonnet"
+
+_print_lock = threading.Lock()
+
+
+def _print_batch(lines: list[str]):
+    """Print multiple lines atomically."""
+    with _print_lock:
+        print("\n".join(lines), flush=True)
 
 
 def load_questions() -> dict:
@@ -59,12 +70,15 @@ def build_prompt(question_data: dict) -> str:
 
 
 def run_single(q_id: str, question_data: dict, condition_name: str,
-               tools: str) -> Path:
-    result_file = RESULTS_DIR / f"{q_id}_{condition_name}.json"
-    log_file = LOGS_DIR / f"{q_id}_{condition_name}.jsonl"
+               tools: str, run_num: int = 1) -> dict:
+    """Run a single question/condition/run. Returns a result dict with output lines."""
+    suffix = f"_r{run_num}" if run_num > 1 else ""
+    tag = f"{q_id}/{condition_name}" + (f"/r{run_num}" if run_num > 1 else "")
+    result_file = RESULTS_DIR / f"{q_id}_{condition_name}{suffix}.json"
+    log_file = LOGS_DIR / f"{q_id}_{condition_name}{suffix}.jsonl"
+
     if result_file.exists():
-        print(f"  SKIP {q_id}/{condition_name} — result exists")
-        return result_file
+        return {"skipped": True, "tag": tag}
 
     prompt = build_prompt(question_data)
     system_prompt = read_system_prompt(condition_name)
@@ -83,16 +97,12 @@ def run_single(q_id: str, question_data: dict, condition_name: str,
         "--mcp-config", str(HARNESS_DIR.parent / ".mcp.json"),
         "--strict-mcp-config",
     ]
-    # Baseline: explicitly block graph tools
     if condition_name == "baseline":
         cmd += ["--disallowed-tools", TOOLS_GRAPH_ONLY]
 
-    # Isolate from user memory files
     env = {**os.environ, "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1"}
 
-    print(f"  RUN  {q_id}/{condition_name}")
-    print(f"       category: {question_data['category']}")
-    print(f"       tools: {'graph+file' if 'mcp' in tools else 'file-only'}")
+    _print_batch([f"  START {tag}"])
     start = time.time()
 
     try:
@@ -107,8 +117,6 @@ def run_single(q_id: str, question_data: dict, condition_name: str,
         elapsed = time.time() - start
 
         if result.returncode != 0:
-            print(f"  FAIL {q_id}/{condition_name} (exit {result.returncode})")
-            print(f"       stderr: {result.stderr[:500]}")
             error_data = {
                 "error": True,
                 "returncode": result.returncode,
@@ -117,13 +125,15 @@ def run_single(q_id: str, question_data: dict, condition_name: str,
             }
             with open(result_file, "w") as f:
                 json.dump(error_data, f, indent=2)
-            return result_file
+            _print_batch([
+                f"  FAIL  {tag} (exit {result.returncode}, {elapsed:.0f}s)",
+                f"        stderr: {result.stderr[:300]}",
+            ])
+            return {"error": True, "tag": tag}
 
-        # Save full stream as JSONL log
         with open(log_file, "w") as f:
             f.write(result.stdout)
 
-        # Parse stream: extract tool usage and result object
         tool_calls = []
         result_data = None
         for line in result.stdout.strip().split("\n"):
@@ -144,7 +154,6 @@ def run_single(q_id: str, question_data: dict, condition_name: str,
         if result_data is None:
             result_data = {"error": True, "msg": "no result object in stream"}
 
-        # Attach tool call summary to the result
         result_data["tool_calls"] = tool_calls
 
         with open(result_file, "w") as f:
@@ -153,60 +162,76 @@ def run_single(q_id: str, question_data: dict, condition_name: str,
         cost = result_data.get("total_cost_usd", "?")
         turns = result_data.get("num_turns", "?")
         graph_calls = sum(1 for t in tool_calls if "graph" in t)
-        print(f"  DONE {q_id}/{condition_name} — "
-              f"${cost}, {turns} turns, {elapsed:.0f}s, "
-              f"{len(tool_calls)} tool calls ({graph_calls} graph)")
+        _print_batch([
+            f"  DONE  {tag} — "
+            f"${cost}, {turns} turns, {elapsed:.0f}s, "
+            f"{len(tool_calls)} tool calls ({graph_calls} graph)"
+        ])
 
-        return result_file
+        return {"error": False, "tag": tag}
 
     except subprocess.TimeoutExpired:
         elapsed = time.time() - start
-        print(f"  TIMEOUT {q_id}/{condition_name} after {elapsed:.0f}s")
         error_data = {"error": True, "timeout": True, "elapsed_seconds": elapsed}
         with open(result_file, "w") as f:
             json.dump(error_data, f, indent=2)
-        return result_file
+        _print_batch([f"  TIMEOUT {tag} after {elapsed:.0f}s"])
+        return {"error": True, "tag": tag}
 
 
 def main():
     signal.signal(signal.SIGINT, _handle_sigint)
 
+    parser = argparse.ArgumentParser(description="Structural question benchmark runner")
+    parser.add_argument("question", nargs="?", help="Question ID (e.g. impl-001)")
+    parser.add_argument("condition", nargs="?", help="Condition (baseline or graph)")
+    parser.add_argument("-n", "--runs", type=int, default=1, help="Number of runs per question/condition (default: 1)")
+    parser.add_argument("-j", "--parallel", type=int, default=1, help="Max parallel runs (default: 1)")
+    args = parser.parse_args()
+
     questions = load_questions()
     RESULTS_DIR.mkdir(exist_ok=True)
     LOGS_DIR.mkdir(exist_ok=True)
 
-    # Allow filtering: run.py [question_id] [condition]
-    filter_q = sys.argv[1] if len(sys.argv) > 1 else None
-    filter_cond = sys.argv[2] if len(sys.argv) > 2 else None
+    # Build task list
+    tasks = []
+    for run_num in range(1, args.runs + 1):
+        for q_id, q_data in questions.items():
+            if args.question and q_id != args.question:
+                continue
+            for condition_name, tools in CONDITIONS:
+                if args.condition and condition_name != args.condition:
+                    continue
+                tasks.append((q_id, q_data, condition_name, tools, run_num))
+
+    print(f"Queued {len(tasks)} runs (j={args.parallel})")
 
     total = 0
     failed = 0
 
-    for q_id, q_data in questions.items():
-        if _stop_requested:
-            break
-        if filter_q and q_id != filter_q:
-            continue
-        print(f"\n{'='*60}")
-        print(f"Q {q_id}: {q_data['question'][:80]}...")
-        print(f"Category: {q_data['category']} | Answer: {len(q_data['answer_files'])} files")
-        print(f"{'='*60}")
-
-        for condition_name, tools in CONDITIONS:
+    if args.parallel <= 1:
+        for q_id, q_data, cond, tools, run_num in tasks:
             if _stop_requested:
                 break
-            if filter_cond and condition_name != filter_cond:
-                continue
             total += 1
-            result_file = run_single(q_id, q_data, condition_name, tools)
-
-            try:
-                with open(result_file) as f:
-                    data = json.load(f)
-                if data.get("error"):
-                    failed += 1
-            except (json.JSONDecodeError, FileNotFoundError):
+            result = run_single(q_id, q_data, cond, tools, run_num)
+            if result.get("error"):
                 failed += 1
+    else:
+        with ThreadPoolExecutor(max_workers=args.parallel) as pool:
+            futures = {}
+            for task in tasks:
+                if _stop_requested:
+                    break
+                q_id, q_data, cond, tools, run_num = task
+                fut = pool.submit(run_single, q_id, q_data, cond, tools, run_num)
+                futures[fut] = task
+
+            for fut in as_completed(futures):
+                total += 1
+                result = fut.result()
+                if result.get("error"):
+                    failed += 1
 
     print(f"\n{'='*60}")
     print(f"Complete: {total} runs, {failed} failed")

@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 14403,
+  "duration_api_ms": 14332,
+  "num_turns": 3,
+  "result": "Note: `DeviceApiController$SessionCloseOnErrorCallback` is an inner class \u2014 its source lives in `DeviceApiController.java`.\n\nRELEVANT_FILES_START\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java | calls deregisterSession() in closeAndCleanup() at line 852\ncommon/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java | inner class SessionCloseOnErrorCallback calls deregisterSession() in onError() at line 556\ncommon/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/session/DefaultLwM2MSessionManager.java | calls deregisterSession() in deregister() at line 68\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java | calls deregisterSession() in doDisconnect() (line 1328) and onRemoteSessionCloseCommand() (line 1451)\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewaySessionHandler.java | calls deregisterSession() in its own deregisterSession() wrapper at line 805\ncommon/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/SnmpTransportContext.java | calls deregisterSession() in destroyDeviceSession() at line 204\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "865997fa-aaed-4459-a130-e4f9e82db4b1",
+  "total_cost_usd": 0.0250086,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 1318,
+    "cache_read_input_tokens": 24537,
+    "output_tokens": 846,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1318,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 846,
+      "cacheReadInputTokens": 24537,
+      "cacheCreationInputTokens": 1318,
+      "webSearchRequests": 0,
+      "costUSD": 0.0250086,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "094d6b36-1203-40f2-b379-8c6f34b8b034",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph"
+  ]
+}

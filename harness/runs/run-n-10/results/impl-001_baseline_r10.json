@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 7974,
+  "duration_api_ms": 7835,
+  "num_turns": 3,
+  "result": "RELEVANT_FILES_START\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java | inner class CoapSessionListener implements SessionMsgListener\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/AbstractSyncSessionCallback.java | abstract class AbstractSyncSessionCallback implements SessionMsgListener\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewayDeviceSessionContext.java | abstract class AbstractGatewayDeviceSessionContext implements SessionMsgListener\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java | class MqttTransportHandler implements SessionMsgListener\ncommon/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java | inner class HttpSessionListener implements SessionMsgListener\ncommon/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/session/DeviceSessionContext.java | class DeviceSessionContext implements SessionMsgListener\ncommon/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/LwM2mSessionMsgListener.java | class LwM2mSessionMsgListener implements SessionMsgListener\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "00db29c8-76d1-429d-ae8a-5bd570279eb1",
+  "total_cost_usd": 0.015949650000000003,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 891,
+    "cache_read_input_tokens": 11738,
+    "output_tokens": 605,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 891,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 605,
+      "cacheReadInputTokens": 11738,
+      "cacheCreationInputTokens": 891,
+      "webSearchRequests": 0,
+      "costUSD": 0.015949650000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "7b5267f4-1f78-4e1c-a784-70466b2460b4",
+  "tool_calls": [
+    "Grep",
+    "Grep"
+  ]
+}

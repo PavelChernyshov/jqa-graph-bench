@@ -1,0 +1,50 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 14881,
+  "duration_api_ms": 14811,
+  "num_turns": 4,
+  "result": "Note: `HousekeeperStatsService$HousekeeperStats` is an inner class \u2014 its source file is `HousekeeperStatsService.java`.\n\nRELEVANT_FILES_START\ncommon/script/script-api/src/main/java/org/thingsboard/script/api/AbstractScriptInvokeService.java | calls createStatsCounter()\ncommon/stats/src/main/java/org/thingsboard/server/common/stats/FstStatsServiceImpl.java | calls createStatsCounter()\ndao/src/main/java/org/thingsboard/server/dao/util/BufferedRateExecutorStats.java | calls createStatsCounter()\ncommon/edqs/src/main/java/org/thingsboard/server/edqs/stats/DefaultEdqsStatsService.java | calls createStatsCounter()\napplication/src/main/java/org/thingsboard/server/service/housekeeper/stats/HousekeeperStatsService.java | inner class HousekeeperStats calls createStatsCounter()\napplication/src/main/java/org/thingsboard/server/service/queue/EdgeConsumerStats.java | calls createStatsCounter()\napplication/src/main/java/org/thingsboard/server/service/queue/TbCoreConsumerStats.java | calls createStatsCounter()\napplication/src/main/java/org/thingsboard/server/service/queue/TbRuleEngineConsumerStats.java | calls createStatsCounter()\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "13b4ade7-8ced-4890-8540-3ca62d4f70ec",
+  "total_cost_usd": 0.0285222,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 1408,
+    "cache_read_input_tokens": 33064,
+    "output_tokens": 887,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1408,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 887,
+      "cacheReadInputTokens": 33064,
+      "cacheCreationInputTokens": 1408,
+      "webSearchRequests": 0,
+      "costUSD": 0.0285222,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "547b56aa-7483-4a83-a2c6-16ec5a3d4c83",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph",
+    "mcp__code-graph__query_graph"
+  ]
+}

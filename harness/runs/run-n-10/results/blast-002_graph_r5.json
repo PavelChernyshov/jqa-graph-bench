@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 13291,
+  "duration_api_ms": 13232,
+  "num_turns": 3,
+  "result": "Note: `HousekeeperStatsService$HousekeeperStats` is an inner class \u2014 its source file is the outer class `HousekeeperStatsService.java`.\n\nRELEVANT_FILES_START\ncommon/script/script-api/src/main/java/org/thingsboard/script/api/AbstractScriptInvokeService.java | calls StatsFactory.createStatsCounter()\ncommon/stats/src/main/java/org/thingsboard/server/common/stats/FstStatsServiceImpl.java | calls StatsFactory.createStatsCounter()\ndao/src/main/java/org/thingsboard/server/dao/util/BufferedRateExecutorStats.java | calls StatsFactory.createStatsCounter()\ncommon/edqs/src/main/java/org/thingsboard/server/edqs/stats/DefaultEdqsStatsService.java | calls StatsFactory.createStatsCounter()\napplication/src/main/java/org/thingsboard/server/service/housekeeper/stats/HousekeeperStatsService.java | inner class HousekeeperStats calls StatsFactory.createStatsCounter()\napplication/src/main/java/org/thingsboard/server/service/queue/EdgeConsumerStats.java | calls StatsFactory.createStatsCounter()\napplication/src/main/java/org/thingsboard/server/service/queue/TbCoreConsumerStats.java | calls StatsFactory.createStatsCounter()\napplication/src/main/java/org/thingsboard/server/service/queue/TbRuleEngineConsumerStats.java | calls StatsFactory.createStatsCounter()\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "8a843303-114f-443f-a411-0619ce4678b0",
+  "total_cost_usd": 0.025693050000000002,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 1681,
+    "cache_read_input_tokens": 24081,
+    "output_tokens": 810,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1681,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 810,
+      "cacheReadInputTokens": 24081,
+      "cacheCreationInputTokens": 1681,
+      "webSearchRequests": 0,
+      "costUSD": 0.025693050000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "df5aa2ea-71c4-44bf-a2b3-bf03ea19fd6f",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph"
+  ]
+}

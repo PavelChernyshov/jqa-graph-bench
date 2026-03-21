@@ -1,0 +1,50 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 14827,
+  "duration_api_ms": 14767,
+  "num_turns": 4,
+  "result": "There are two `NotificationChannel` interfaces (in `application` and `monitoring` modules), with 6 total implementing classes:\n\n**`org.thingsboard.server.service.notification.channels.NotificationChannel` (application module)** \u2014 5 implementors:\n\n| Class | Notes |\n|---|---|\n| `DefaultNotificationCenter` | Also implements `NotificationCenter` |\n| `EmailNotificationChannel` | Email delivery |\n| `MicrosoftTeamsNotificationChannel` | MS Teams delivery |\n| `MobileAppNotificationChannel` | Mobile push delivery |\n| `SlackNotificationChannel` | Slack delivery |\n| `SmsNotificationChannel` | SMS delivery |\n\n**`org.thingsboard.monitoring.notification.channels.NotificationChannel` (monitoring module)** \u2014 1 implementor:\n\n| Class | Notes |\n|---|---|\n| `SlackNotificationChannel` | Monitoring-specific Slack channel |\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/service/notification/DefaultNotificationCenter.java | implements application NotificationChannel (also implements NotificationCenter)\napplication/src/main/java/org/thingsboard/server/service/notification/channels/EmailNotificationChannel.java | implements application NotificationChannel for email delivery\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MicrosoftTeamsNotificationChannel.java | implements application NotificationChannel for Microsoft Teams delivery\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MobileAppNotificationChannel.java | implements application NotificationChannel for mobile push delivery\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SlackNotificationChannel.java | implements application NotificationChannel for Slack delivery\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SmsNotificationChannel.java | implements application NotificationChannel for SMS delivery\nmonitoring/src/main/java/org/thingsboard/monitoring/notification/channels/impl/SlackNotificationChannel.java | implements monitoring NotificationChannel for Slack delivery\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "13110bdd-5bc3-4468-a0e7-1af125426484",
+  "total_cost_usd": 0.02745915,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 1171,
+    "cache_read_input_tokens": 33333,
+    "output_tokens": 870,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1171,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 870,
+      "cacheReadInputTokens": 33333,
+      "cacheCreationInputTokens": 1171,
+      "webSearchRequests": 0,
+      "costUSD": 0.02745915,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "a9b2f740-9716-49f8-b99c-72407e53fecd",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph"
+  ]
+}

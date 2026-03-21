@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 9813,
+  "duration_api_ms": 9786,
+  "num_turns": 3,
+  "result": "RELEVANT_FILES_START\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/ApiUsageStateFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/AssetTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/DeviceTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EdgeTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityListFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityNameFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntitySearchQueryFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityViewTypeFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/RelationsQueryFilter.java | implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/SingleEntityFilter.java | implements EntityFilter\nRELEVANT_FILES_END\n\nAll 11 implementing classes are in the `common/data` module under the `org.thingsboard.server.common.data.query` package.",
+  "stop_reason": "end_turn",
+  "session_id": "6d99a937-d256-4105-8ecb-aa91d2249494",
+  "total_cost_usd": 0.0169083,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 25311,
+    "output_tokens": 620,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 620,
+      "cacheReadInputTokens": 25311,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0169083,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "213e63fd-edb5-41c1-be5f-1f8cc4acc440",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__get_type_context"
+  ]
+}

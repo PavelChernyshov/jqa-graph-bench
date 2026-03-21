@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 15155,
+  "duration_api_ms": 15097,
+  "num_turns": 3,
+  "result": "12 caller classes found. Here they are:\n\nRELEVANT_FILES_START\nrule-engine/rule-engine-components/src/main/java/org/thingsboard/rule/engine/metadata/TbFetchDeviceCredentialsNode.java | calls findDeviceCredentialsByDeviceId in rule engine node\ndao/src/main/java/org/thingsboard/server/dao/device/DeviceConnectivityServiceImpl.java | calls findDeviceCredentialsByDeviceId for connectivity info\ndao/src/main/java/org/thingsboard/server/dao/device/DeviceServiceImpl.java | calls findDeviceCredentialsByDeviceId in device service\napplication/src/main/java/org/thingsboard/server/service/device/DeviceBulkImportService.java | calls findDeviceCredentialsByDeviceId during bulk import\napplication/src/main/java/org/thingsboard/server/service/device/DeviceProvisionServiceImpl.java | calls findDeviceCredentialsByDeviceId during provisioning\napplication/src/main/java/org/thingsboard/server/service/edge/rpc/processor/device/BaseDeviceProcessor.java | calls findDeviceCredentialsByDeviceId in edge sync\napplication/src/main/java/org/thingsboard/server/service/edge/rpc/processor/device/DeviceEdgeProcessor.java | calls findDeviceCredentialsByDeviceId in edge sync\napplication/src/main/java/org/thingsboard/server/service/entitiy/device/DefaultTbDeviceService.java | calls findDeviceCredentialsByDeviceId in device service facade\napplication/src/main/java/org/thingsboard/server/service/install/DefaultSystemDataLoaderService.java | calls findDeviceCredentialsByDeviceId during system data loading\napplication/src/main/java/org/thingsboard/server/service/sync/ie/exporting/impl/DeviceExportService.java | calls findDeviceCredentialsByDeviceId during entity export\napplication/src/main/java/org/thingsboard/server/service/sync/ie/importing/impl/DeviceImportService.java | calls findDeviceCredentialsByDeviceId during entity import\napplication/src/main/java/org/thingsboard/server/service/transport/DefaultTransportApiService.java | calls findDeviceCredentialsByDeviceId in transport API layer\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "f8b59d96-d55e-4ac2-9801-187f4ef065e4",
+  "total_cost_usd": 0.0288024,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 2048,
+    "cache_read_input_tokens": 24108,
+    "output_tokens": 925,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2048,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 925,
+      "cacheReadInputTokens": 24108,
+      "cacheCreationInputTokens": 2048,
+      "webSearchRequests": 0,
+      "costUSD": 0.0288024,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "b99ccfc8-c62a-435b-a872-53f8bf4569c0",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 15822,
+  "duration_api_ms": 15638,
+  "num_turns": 2,
+  "result": "Here are all unique non-test caller files:\n\nRELEVANT_FILES_START\ncommon/stats/src/main/java/org/thingsboard/server/common/stats/StatsFactory.java | defines the createStatsCounter() method signature \u2014 must be updated directly\ncommon/stats/src/main/java/org/thingsboard/server/common/stats/DefaultStatsFactory.java | implements StatsFactory and also internally calls createStatsCounter()\ncommon/stats/src/main/java/org/thingsboard/server/common/stats/FstStatsServiceImpl.java | calls statsFactory.createStatsCounter() for encode/decode counters\ncommon/script/script-api/src/main/java/org/thingsboard/script/api/AbstractScriptInvokeService.java | calls statsFactory.createStatsCounter() for requests/responses/failures/timeouts counters\ncommon/edqs/src/main/java/org/thingsboard/server/edqs/stats/DefaultEdqsStatsService.java | calls statsFactory.createStatsCounter() for EDQS counters\ndao/src/main/java/org/thingsboard/server/dao/util/BufferedRateExecutorStats.java | calls statsFactory.createStatsCounter() for rate executor stats\napplication/src/main/java/org/thingsboard/server/service/queue/TbCoreConsumerStats.java | calls statsFactory.createStatsCounter() for all core consumer message type counters\napplication/src/main/java/org/thingsboard/server/service/queue/TbRuleEngineConsumerStats.java | calls statsFactory.createStatsCounter() for rule engine message counters\napplication/src/main/java/org/thingsboard/server/service/queue/EdgeConsumerStats.java | calls statsFactory.createStatsCounter() for edge consumer counters\napplication/src/main/java/org/thingsboard/server/service/housekeeper/stats/HousekeeperStatsService.java | calls statsFactory.createStatsCounter() for housekeeper task type counters\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "b8037d25-0bfc-458f-9308-f6e8c661f905",
+  "total_cost_usd": 0.03780555,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 4649,
+    "cache_read_input_tokens": 11766,
+    "output_tokens": 1122,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 4649,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 1122,
+      "cacheReadInputTokens": 11766,
+      "cacheCreationInputTokens": 4649,
+      "webSearchRequests": 0,
+      "costUSD": 0.03780555,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "7fdf20c5-dd9c-4dc1-955e-047752872ff6",
+  "tool_calls": [
+    "Grep"
+  ]
+}

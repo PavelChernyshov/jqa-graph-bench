@@ -1,0 +1,51 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 35459,
+  "duration_api_ms": 35153,
+  "num_turns": 5,
+  "result": "Confirmed \u2014 `AbstractGatewayDeviceSessionContext` calls `parent.deregisterSession(String)`, a different overload on the gateway handler, not `TransportService.deregisterSession(SessionInfoProto)`. It is excluded.\n\nHere are all callers of `TransportService.deregisterSession(SessionInfoProto)`:\n\nRELEVANT_FILES_START\ncommon/transport/transport-api/src/main/java/org/thingsboard/server/common/transport/service/DefaultTransportService.java | implements TransportService.deregisterSession() and calls it internally\ncommon/transport/transport-api/src/main/java/org/thingsboard/server/common/transport/service/TransportActivityManager.java | abstract class implementing TransportService; calls deregisterSession(sessionInfo) on self\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java | calls transportService.deregisterSession(deviceSessionCtx.getSessionInfo()) at two call sites\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewaySessionHandler.java | calls transportService.deregisterSession(deviceSessionCtx.getSessionInfo())\ncommon/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/session/DefaultLwM2MSessionManager.java | calls transportService.deregisterSession(sessionInfo)\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java | calls transportService.deregisterSession(state.getSession())\ncommon/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/SnmpTransportContext.java | calls transportService.deregisterSession(sessionContext.getSessionInfo())\ncommon/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java | calls transportService.deregisterSession(sessionInfo)\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "7eed07ad-84f3-45ca-b5c1-2184b5c1f5ba",
+  "total_cost_usd": 0.059240100000000004,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 4000,
+    "cache_read_input_tokens": 36597,
+    "output_tokens": 2216,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 4000,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 2216,
+      "cacheReadInputTokens": 36597,
+      "cacheCreationInputTokens": 4000,
+      "webSearchRequests": 0,
+      "costUSD": 0.059240100000000004,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "d57fcbfc-0b44-4b5d-a730-94b62751acfb",
+  "tool_calls": [
+    "Grep",
+    "Read",
+    "Grep",
+    "Read"
+  ]
+}

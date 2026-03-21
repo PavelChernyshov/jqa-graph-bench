@@ -1,0 +1,57 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 28446,
+  "duration_api_ms": 27985,
+  "num_turns": 11,
+  "result": "Both are interfaces with single concrete implementations. Here is the complete answer:\n\n---\n\n**DashboardController** declares two injected fields (via `@RequiredArgsConstructor`) at lines 104\u2013105:\n\n| Service Interface | Type | Concrete Implementation |\n|---|---|---|\n| `TbDashboardService` | interface | `DefaultTbDashboardService` |\n| `TbResourceService` | interface | `DefaultTbResourceService` |\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/controller/DashboardController.java | The controller under analysis; declares fields for TbDashboardService and TbResourceService\napplication/src/main/java/org/thingsboard/server/service/entitiy/dashboard/TbDashboardService.java | Service interface directly injected into DashboardController\napplication/src/main/java/org/thingsboard/server/service/entitiy/dashboard/DefaultTbDashboardService.java | Concrete implementation of TbDashboardService\napplication/src/main/java/org/thingsboard/server/service/resource/TbResourceService.java | Service interface directly injected into DashboardController\napplication/src/main/java/org/thingsboard/server/service/resource/DefaultTbResourceService.java | Concrete implementation of TbResourceService\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "86c07329-8941-427d-baad-0a1ce772a72e",
+  "total_cost_usd": 0.0549681,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 4742,
+    "cache_read_input_tokens": 52012,
+    "output_tokens": 1437,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 4742,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1437,
+      "cacheReadInputTokens": 52012,
+      "cacheCreationInputTokens": 4742,
+      "webSearchRequests": 0,
+      "costUSD": 0.0549681,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "70501c6d-df3c-4a00-891b-936b7656de03",
+  "tool_calls": [
+    "Glob",
+    "Read",
+    "Read",
+    "Read",
+    "Glob",
+    "Glob",
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep"
+  ]
+}

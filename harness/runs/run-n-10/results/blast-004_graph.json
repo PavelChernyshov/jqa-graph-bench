@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 16291,
+  "duration_api_ms": 16163,
+  "num_turns": 3,
+  "result": "12 caller classes found.\n\nRELEVANT_FILES_START\nrule-engine/rule-engine-components/src/main/java/org/thingsboard/rule/engine/metadata/TbFetchDeviceCredentialsNode.java | calls findDeviceCredentialsByDeviceId() in rule engine node\ndao/src/main/java/org/thingsboard/server/dao/device/DeviceConnectivityServiceImpl.java | calls findDeviceCredentialsByDeviceId()\ndao/src/main/java/org/thingsboard/server/dao/device/DeviceServiceImpl.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/device/DeviceBulkImportService.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/device/DeviceProvisionServiceImpl.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/edge/rpc/processor/device/BaseDeviceProcessor.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/edge/rpc/processor/device/DeviceEdgeProcessor.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/entitiy/device/DefaultTbDeviceService.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/install/DefaultSystemDataLoaderService.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/sync/ie/exporting/impl/DeviceExportService.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/sync/ie/importing/impl/DeviceImportService.java | calls findDeviceCredentialsByDeviceId()\napplication/src/main/java/org/thingsboard/server/service/transport/DefaultTransportApiService.java | calls findDeviceCredentialsByDeviceId()\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "78aad647-972b-49ae-ba50-8af37e9638b8",
+  "total_cost_usd": 0.028441349999999997,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 2065,
+    "cache_read_input_tokens": 24092,
+    "output_tokens": 897,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2065,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 897,
+      "cacheReadInputTokens": 24092,
+      "cacheCreationInputTokens": 2065,
+      "webSearchRequests": 0,
+      "costUSD": 0.028441349999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "f10093d8-a021-46b1-ada1-bbb735f4bb8a",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 10774,
+  "duration_api_ms": 10583,
+  "num_turns": 3,
+  "result": "There are two separate `NotificationChannel` interfaces in the codebase. Here are all implementing classes:\n\n---\n\n**Interface 1:** `monitoring/src/main/java/org/thingsboard/monitoring/notification/channels/NotificationChannel.java`\n\n- `SlackNotificationChannel` (monitoring module)\n\n**Interface 2:** `application/src/main/java/org/thingsboard/server/service/notification/channels/NotificationChannel.java`\n\n- `MicrosoftTeamsNotificationChannel`\n- `SmsNotificationChannel`\n- `EmailNotificationChannel`\n- `MobileAppNotificationChannel`\n- `SlackNotificationChannel` (application module)\n- `DefaultNotificationCenter` (also implements `NotificationCenter`)\n\n---\n\nRELEVANT_FILES_START\nmonitoring/src/main/java/org/thingsboard/monitoring/notification/channels/impl/SlackNotificationChannel.java | implements monitoring's NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MicrosoftTeamsNotificationChannel.java | implements application's NotificationChannel<MicrosoftTeamsNotificationTargetConfig, MicrosoftTeamsDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SmsNotificationChannel.java | implements application's NotificationChannel<User, SmsDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/EmailNotificationChannel.java | implements application's NotificationChannel<User, EmailDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MobileAppNotificationChannel.java | implements application's NotificationChannel<User, MobileAppDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SlackNotificationChannel.java | implements application's NotificationChannel<SlackConversation, SlackDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/DefaultNotificationCenter.java | implements application's NotificationChannel<User, WebDeliveryMethodNotificationTemplate>\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "434237f9-f482-44d8-8e99-b577b786be9a",
+  "total_cost_usd": 0.01880415,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 921,
+    "cache_read_input_tokens": 11728,
+    "output_tokens": 788,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 921,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 788,
+      "cacheReadInputTokens": 11728,
+      "cacheCreationInputTokens": 921,
+      "webSearchRequests": 0,
+      "costUSD": 0.01880415,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "c185db6a-f86c-42cb-af23-05ee23e4e2ae",
+  "tool_calls": [
+    "Grep",
+    "Grep"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 9136,
+  "duration_api_ms": 8993,
+  "num_turns": 3,
+  "result": "There are two `NotificationChannel` interfaces \u2014 one in the monitoring module and one in the application module. Here are all implementing classes:\n\nRELEVANT_FILES_START\nsubjects/thingsboard/repo/monitoring/src/main/java/org/thingsboard/monitoring/notification/channels/impl/SlackNotificationChannel.java | implements monitoring NotificationChannel\nsubjects/thingsboard/repo/application/src/main/java/org/thingsboard/server/service/notification/channels/MicrosoftTeamsNotificationChannel.java | implements application NotificationChannel<MicrosoftTeamsNotificationTargetConfig, MicrosoftTeamsDeliveryMethodNotificationTemplate>\nsubjects/thingsboard/repo/application/src/main/java/org/thingsboard/server/service/notification/channels/SmsNotificationChannel.java | implements application NotificationChannel<User, SmsDeliveryMethodNotificationTemplate>\nsubjects/thingsboard/repo/application/src/main/java/org/thingsboard/server/service/notification/channels/EmailNotificationChannel.java | implements application NotificationChannel<User, EmailDeliveryMethodNotificationTemplate>\nsubjects/thingsboard/repo/application/src/main/java/org/thingsboard/server/service/notification/channels/MobileAppNotificationChannel.java | implements application NotificationChannel<User, MobileAppDeliveryMethodNotificationTemplate>\nsubjects/thingsboard/repo/application/src/main/java/org/thingsboard/server/service/notification/channels/SlackNotificationChannel.java | implements application NotificationChannel<SlackConversation, SlackDeliveryMethodNotificationTemplate>\nsubjects/thingsboard/repo/application/src/main/java/org/thingsboard/server/service/notification/DefaultNotificationCenter.java | implements application NotificationChannel<User, WebDeliveryMethodNotificationTemplate> (also implements NotificationCenter)\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "115505a5-d238-4c3f-836d-1e108af4b631",
+  "total_cost_usd": 0.0174054,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 920,
+    "cache_read_input_tokens": 11728,
+    "output_tokens": 695,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 920,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 695,
+      "cacheReadInputTokens": 11728,
+      "cacheCreationInputTokens": 920,
+      "webSearchRequests": 0,
+      "costUSD": 0.0174054,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "f32ac54d-3f2b-4df9-8995-e8d1776fb2dc",
+  "tool_calls": [
+    "Grep",
+    "Grep"
+  ]
+}

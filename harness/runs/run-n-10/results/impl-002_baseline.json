@@ -1,0 +1,50 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 14279,
+  "duration_api_ms": 13907,
+  "num_turns": 4,
+  "result": "All results found. The `AbstractEntitySearchQueryProcessor` is a processor class, not an EntityFilter implementation. The concrete subclasses of `EntitySearchQueryFilter` all indirectly implement `EntityFilter`.\n\nRELEVANT_FILES_START\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityNameFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntitySearchQueryFilter.java | abstract class directly implementing EntityFilter; parent of search query subclasses\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityViewTypeFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/DeviceTypeFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityTypeFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/AssetTypeFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/SingleEntityFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EdgeTypeFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityListFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/ApiUsageStateFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/RelationsQueryFilter.java | directly implements EntityFilter\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/DeviceSearchQueryFilter.java | extends EntitySearchQueryFilter (indirect EntityFilter implementation)\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/AssetSearchQueryFilter.java | extends EntitySearchQueryFilter (indirect EntityFilter implementation)\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EdgeSearchQueryFilter.java | extends EntitySearchQueryFilter (indirect EntityFilter implementation)\ncommon/data/src/main/java/org/thingsboard/server/common/data/query/EntityViewSearchQueryFilter.java | extends EntitySearchQueryFilter (indirect EntityFilter implementation)\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "ab0dd063-37ec-4f10-8d4c-d368b41229ba",
+  "total_cost_usd": 0.0311151,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 2712,
+    "cache_read_input_tokens": 17317,
+    "output_tokens": 1049,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2712,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 1049,
+      "cacheReadInputTokens": 17317,
+      "cacheCreationInputTokens": 2712,
+      "webSearchRequests": 0,
+      "costUSD": 0.0311151,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "eedc9ae4-e0cf-4209-8031-9e63eef4f24f",
+  "tool_calls": [
+    "Grep",
+    "Grep",
+    "Grep"
+  ]
+}

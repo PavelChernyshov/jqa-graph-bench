@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 13854,
+  "duration_api_ms": 13802,
+  "num_turns": 3,
+  "result": "10 caller classes found. Here they are:\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/controller/AdminController.java | directly calls saveAdminSettings() in admin REST endpoints\ndao/src/main/java/org/thingsboard/server/dao/notification/DefaultNotificationSettingsService.java | calls saveAdminSettings() to persist notification settings\ndao/src/main/java/org/thingsboard/server/dao/settings/DefaultSecuritySettingsService.java | calls saveAdminSettings() to persist security settings\ndao/src/main/java/org/thingsboard/server/dao/trendz/DefaultTrendzSettingsService.java | calls saveAdminSettings() to persist Trendz settings\napplication/src/main/java/org/thingsboard/server/service/install/DefaultSystemDataLoaderService.java | calls saveAdminSettings() during system initialization\napplication/src/main/java/org/thingsboard/server/service/mail/RefreshTokenExpCheckService.java | calls saveAdminSettings() to update mail/token settings\napplication/src/main/java/org/thingsboard/server/service/mail/TbMailSender.java | calls saveAdminSettings() to persist mail configuration\napplication/src/main/java/org/thingsboard/server/service/security/auth/jwt/settings/DefaultJwtSettingsService.java | calls saveAdminSettings() to persist JWT settings\napplication/src/main/java/org/thingsboard/server/service/security/auth/mfa/config/DefaultTwoFaConfigManager.java | calls saveAdminSettings() to persist 2FA config\napplication/src/main/java/org/thingsboard/server/service/sync/vc/TbAbstractVersionControlSettingsService.java | calls saveAdminSettings() to persist version control settings\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "18533cff-9859-4a6e-b51d-826e8316a14e",
+  "total_cost_usd": 0.023689050000000003,
+  "usage": {
+    "input_tokens": 5,
+    "cache_creation_input_tokens": 1189,
+    "cache_read_input_tokens": 24751,
+    "output_tokens": 786,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1189,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 5,
+      "outputTokens": 786,
+      "cacheReadInputTokens": 24751,
+      "cacheCreationInputTokens": 1189,
+      "webSearchRequests": 0,
+      "costUSD": 0.023689050000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "342b6e23-6b24-4174-a696-f0a83b21771b",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph"
+  ]
+}

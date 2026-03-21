@@ -1,0 +1,50 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 12986,
+  "duration_api_ms": 12929,
+  "num_turns": 4,
+  "result": "There are two `NotificationChannel` interfaces in different modules, with 7 implementing classes total.\n\n**`org.thingsboard.server.service.notification.channels.NotificationChannel`** (application module) \u2014 6 implementations:\n\n| Class | Notes |\n|---|---|\n| `DefaultNotificationCenter` | also implements the interface |\n| `EmailNotificationChannel` | |\n| `MicrosoftTeamsNotificationChannel` | |\n| `MobileAppNotificationChannel` | |\n| `SlackNotificationChannel` | |\n| `SmsNotificationChannel` | |\n\n**`org.thingsboard.monitoring.notification.channels.NotificationChannel`** (monitoring module) \u2014 1 implementation:\n\n| Class | Notes |\n|---|---|\n| `SlackNotificationChannel` | monitoring module variant |\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/service/notification/DefaultNotificationCenter.java | implements application NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/EmailNotificationChannel.java | implements application NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MicrosoftTeamsNotificationChannel.java | implements application NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MobileAppNotificationChannel.java | implements application NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SlackNotificationChannel.java | implements application NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SmsNotificationChannel.java | implements application NotificationChannel\nmonitoring/src/main/java/org/thingsboard/monitoring/notification/channels/impl/SlackNotificationChannel.java | implements monitoring NotificationChannel\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "c4898760-4bfd-4837-88e6-65018f1b069e",
+  "total_cost_usd": 0.025955549999999997,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 1025,
+    "cache_read_input_tokens": 33346,
+    "output_tokens": 806,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1025,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 806,
+      "cacheReadInputTokens": 33346,
+      "cacheCreationInputTokens": 1025,
+      "webSearchRequests": 0,
+      "costUSD": 0.025955549999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "a214c1f5-4ae7-48b8-b862-6a3d8dcdfec9",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 12433,
+  "duration_api_ms": 12264,
+  "num_turns": 3,
+  "result": "There are 7 implementing classes (2 are inner classes). Here they are:\n\nRELEVANT_FILES_START\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java | contains inner class `CoapSessionListener implements SessionMsgListener` (line 479)\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/AbstractSyncSessionCallback.java | abstract class directly implementing SessionMsgListener\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewayDeviceSessionContext.java | abstract class implementing SessionMsgListener\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java | implements SessionMsgListener (along with GenericFutureListener)\ncommon/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/LwM2mSessionMsgListener.java | implements SessionMsgListener (along with GenericFutureListener)\ncommon/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java | contains inner class `HttpSessionListener implements SessionMsgListener` (line 579)\ncommon/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/session/DeviceSessionContext.java | implements SessionMsgListener (along with ResponseListener)\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "411653ca-40b9-4ba6-bb8a-cd2df4f2acc9",
+  "total_cost_usd": 0.024235649999999997,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 2149,
+    "cache_read_input_tokens": 10483,
+    "output_tokens": 868,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2149,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 868,
+      "cacheReadInputTokens": 10483,
+      "cacheCreationInputTokens": 2149,
+      "webSearchRequests": 0,
+      "costUSD": 0.024235649999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "bb44467d-1998-497b-a5e6-d97812f34eef",
+  "tool_calls": [
+    "Grep",
+    "Grep"
+  ]
+}

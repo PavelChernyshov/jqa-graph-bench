@@ -86,7 +86,7 @@ Results go to `harness/results/`. Logs go to `harness/logs/`.
 mcp-server/          MCP server (Python, FastMCP + neo4j driver)
   server.py          4 tools: find_types, get_type_context, query_graph, get_graph_schema
 
-harness/             Structural question benchmark (Tier 2)
+harness/             Structural question benchmark
   run.py             Runner — loops questions x conditions, calls claude -p
   data/              questions.json — 10 questions with answer_files and verification Cypher
   prompts/           system_base.md, system_graph.md — agent instructions per condition

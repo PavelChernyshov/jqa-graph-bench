@@ -1,0 +1,58 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 32515,
+  "duration_api_ms": 32062,
+  "num_turns": 12,
+  "result": "Here is the complete picture:\n\n---\n\n**DashboardController** declares two injected service fields (via `@RequiredArgsConstructor`):\n\n| Role | Interface | Concrete Implementation |\n|---|---|---|\n| Dashboard operations | `TbDashboardService` | `DefaultTbDashboardService` |\n| Resource operations | `TbResourceService` | `DefaultTbResourceService` |\n\n---\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/controller/DashboardController.java | The controller under analysis\napplication/src/main/java/org/thingsboard/server/service/entitiy/dashboard/TbDashboardService.java | Service interface injected as `tbDashboardService`\napplication/src/main/java/org/thingsboard/server/service/entitiy/dashboard/DefaultTbDashboardService.java | Concrete implementation of TbDashboardService\napplication/src/main/java/org/thingsboard/server/service/resource/TbResourceService.java | Service interface injected as `tbResourceService`\napplication/src/main/java/org/thingsboard/server/service/resource/DefaultTbResourceService.java | Concrete implementation of TbResourceService\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "508d54a3-533b-4f30-b298-0ce619fecc18",
+  "total_cost_usd": 0.06596595,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 5429,
+    "cache_read_input_tokens": 64474,
+    "output_tokens": 1749,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 5429,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 1749,
+      "cacheReadInputTokens": 64474,
+      "cacheCreationInputTokens": 5429,
+      "webSearchRequests": 0,
+      "costUSD": 0.06596595,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "7f1ed2ca-8749-437c-b818-31c97de6b7b3",
+  "tool_calls": [
+    "Glob",
+    "Read",
+    "Read",
+    "Read",
+    "Glob",
+    "Glob",
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 15341,
+  "duration_api_ms": 15283,
+  "num_turns": 4,
+  "result": "There are two `NotificationChannel` interfaces in different modules, with 7 total implementing classes:\n\n**`org.thingsboard.server.service.notification.channels.NotificationChannel` (application module) \u2014 5 implementors:**\n\n| Class | Note |\n|---|---|\n| `DefaultNotificationCenter` | Also implements this interface |\n| `EmailNotificationChannel` | |\n| `MicrosoftTeamsNotificationChannel` | |\n| `MobileAppNotificationChannel` | |\n| `SlackNotificationChannel` | |\n| `SmsNotificationChannel` | |\n\n**`org.thingsboard.monitoring.notification.channels.NotificationChannel` (monitoring module) \u2014 1 implementor:**\n\n| Class | |\n|---|---|\n| `SlackNotificationChannel` (monitoring) | |\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/service/notification/DefaultNotificationCenter.java | implements org.thingsboard.server.service.notification.channels.NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/EmailNotificationChannel.java | implements org.thingsboard.server.service.notification.channels.NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MicrosoftTeamsNotificationChannel.java | implements org.thingsboard.server.service.notification.channels.NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MobileAppNotificationChannel.java | implements org.thingsboard.server.service.notification.channels.NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SlackNotificationChannel.java | implements org.thingsboard.server.service.notification.channels.NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SmsNotificationChannel.java | implements org.thingsboard.server.service.notification.channels.NotificationChannel\nmonitoring/src/main/java/org/thingsboard/monitoring/notification/channels/impl/SlackNotificationChannel.java | implements org.thingsboard.monitoring.notification.channels.NotificationChannel\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "e293c796-3899-4f8a-9509-61fe1164ef25",
+  "total_cost_usd": 0.028030799999999998,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 1220,
+    "cache_read_input_tokens": 33176,
+    "output_tokens": 899,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1220,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 899,
+      "cacheReadInputTokens": 33176,
+      "cacheCreationInputTokens": 1220,
+      "webSearchRequests": 0,
+      "costUSD": 0.028030799999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "a6f1b761-0b65-406f-ac4a-ff079e38e555",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph"
+  ]
+}

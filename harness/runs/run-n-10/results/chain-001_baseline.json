@@ -1,0 +1,58 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 36789,
+  "duration_api_ms": 36325,
+  "num_turns": 12,
+  "result": "The question asks specifically about `DashboardController`'s **own** direct service fields (not inherited from `BaseController`). The controller declares exactly two:\n\n- Line 104: `private final TbDashboardService tbDashboardService`\n- Line 105: `private final TbResourceService tbResourceService`\n\nBoth are confirmed interfaces with single concrete implementations.\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/controller/DashboardController.java | The controller itself, declaring TbDashboardService and TbResourceService fields\napplication/src/main/java/org/thingsboard/server/service/entitiy/dashboard/TbDashboardService.java | Service interface directly injected into DashboardController (extends SimpleTbEntityService<Dashboard>)\napplication/src/main/java/org/thingsboard/server/service/entitiy/dashboard/DefaultTbDashboardService.java | Concrete implementation of TbDashboardService\napplication/src/main/java/org/thingsboard/server/service/resource/TbResourceService.java | Service interface directly injected into DashboardController\napplication/src/main/java/org/thingsboard/server/service/resource/DefaultTbResourceService.java | Concrete implementation of TbResourceService\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "609dd502-4dd8-4809-bf0f-f4548b183724",
+  "total_cost_usd": 0.08124360000000001,
+  "usage": {
+    "input_tokens": 11,
+    "cache_creation_input_tokens": 7712,
+    "cache_read_input_tokens": 73452,
+    "output_tokens": 2017,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 7712,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 11,
+      "outputTokens": 2017,
+      "cacheReadInputTokens": 73452,
+      "cacheCreationInputTokens": 7712,
+      "webSearchRequests": 0,
+      "costUSD": 0.08124360000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "94b2c09c-0ce1-417d-9758-3eb76b7ae88e",
+  "tool_calls": [
+    "Glob",
+    "Read",
+    "Read",
+    "Read",
+    "Glob",
+    "Glob",
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep"
+  ]
+}

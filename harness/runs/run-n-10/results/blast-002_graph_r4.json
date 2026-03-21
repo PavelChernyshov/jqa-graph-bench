@@ -1,0 +1,50 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 17878,
+  "duration_api_ms": 17783,
+  "num_turns": 4,
+  "result": "Note: `HousekeeperStatsService$HousekeeperStats` is an inner class \u2014 its source file is `HousekeeperStatsService.java`.\n\nRELEVANT_FILES_START\ncommon/script/script-api/src/main/java/org/thingsboard/script/api/AbstractScriptInvokeService.java | calls createStatsCounter() in abstract script service\ncommon/stats/src/main/java/org/thingsboard/server/common/stats/FstStatsServiceImpl.java | calls createStatsCounter() in FST stats service impl\ndao/src/main/java/org/thingsboard/server/dao/util/BufferedRateExecutorStats.java | calls createStatsCounter() in DAO buffered rate executor stats\ncommon/edqs/src/main/java/org/thingsboard/server/edqs/stats/DefaultEdqsStatsService.java | calls createStatsCounter() in EDQS stats service\napplication/src/main/java/org/thingsboard/server/service/housekeeper/stats/HousekeeperStatsService.java | calls createStatsCounter() inside inner class HousekeeperStats\napplication/src/main/java/org/thingsboard/server/service/queue/EdgeConsumerStats.java | calls createStatsCounter() in edge consumer stats\napplication/src/main/java/org/thingsboard/server/service/queue/TbCoreConsumerStats.java | calls createStatsCounter() in TB Core consumer stats\napplication/src/main/java/org/thingsboard/server/service/queue/TbRuleEngineConsumerStats.java | calls createStatsCounter() in TB Rule Engine consumer stats\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "6fe0b351-cbf2-4754-adb6-c3ea5f2f0494",
+  "total_cost_usd": 0.028389900000000003,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 1242,
+    "cache_read_input_tokens": 33248,
+    "output_tokens": 916,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1242,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 916,
+      "cacheReadInputTokens": 33248,
+      "cacheCreationInputTokens": 1242,
+      "webSearchRequests": 0,
+      "costUSD": 0.028389900000000003,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "30784242-ea10-4dc9-9fc8-e38ef46c7629",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph",
+    "mcp__code-graph__query_graph"
+  ]
+}

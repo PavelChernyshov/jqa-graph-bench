@@ -1,0 +1,48 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 357518,
+  "duration_api_ms": 357316,
+  "num_turns": 2,
+  "result": "All callers found. Excluding test files, here are all classes that call `StatsFactory.createStatsCounter()`:\n\nRELEVANT_FILES_START\ncommon/stats/src/main/java/org/thingsboard/server/common/stats/DefaultStatsFactory.java | Implements StatsFactory and internally calls createStatsCounter() in createMessagesStats()\ncommon/stats/src/main/java/org/thingsboard/server/common/stats/FstStatsServiceImpl.java | Calls statsFactory.createStatsCounter() for encode/decode counters\ncommon/script/script-api/src/main/java/org/thingsboard/script/api/AbstractScriptInvokeService.java | Calls statsFactory.createStatsCounter() for requests/responses/failures/timeouts counters\ncommon/edqs/src/main/java/org/thingsboard/server/edqs/stats/DefaultEdqsStatsService.java | Calls statsFactory.createStatsCounter() inside getCounter() helper\ndao/src/main/java/org/thingsboard/server/dao/util/BufferedRateExecutorStats.java | Calls statsFactory.createStatsCounter() for 7 rate executor counters\napplication/src/main/java/org/thingsboard/server/service/queue/TbCoreConsumerStats.java | Calls statsFactory.createStatsCounter() for ~20 core consumer counters\napplication/src/main/java/org/thingsboard/server/service/queue/TbRuleEngineConsumerStats.java | Calls statsFactory.createStatsCounter() for 8 rule engine counters\napplication/src/main/java/org/thingsboard/server/service/queue/EdgeConsumerStats.java | Calls statsFactory.createStatsCounter() for 7 edge consumer counters\napplication/src/main/java/org/thingsboard/server/service/housekeeper/stats/HousekeeperStatsService.java | Inner class calls statsFactory.createStatsCounter() for housekeeper task counters\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "08f2181a-3dea-4cca-8eca-d4495804b377",
+  "total_cost_usd": 0.04605555,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 6485,
+    "cache_read_input_tokens": 11766,
+    "output_tokens": 1213,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 6485,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 1213,
+      "cacheReadInputTokens": 11766,
+      "cacheCreationInputTokens": 6485,
+      "webSearchRequests": 0,
+      "costUSD": 0.04605555,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "680d9675-b500-4492-b37e-fc6e6adb8763",
+  "tool_calls": [
+    "Grep"
+  ]
+}

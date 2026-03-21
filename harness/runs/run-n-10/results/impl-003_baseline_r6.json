@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 9676,
+  "duration_api_ms": 9531,
+  "num_turns": 3,
+  "result": "There are two `NotificationChannel` interfaces \u2014 one in the monitoring module and one in the application module. Here are all implementing classes:\n\n**`monitoring/.../NotificationChannel`:**\n- `SlackNotificationChannel` in monitoring module\n\n**`application/.../NotificationChannel<R, T>`:**\n- `MicrosoftTeamsNotificationChannel`\n- `SmsNotificationChannel`\n- `EmailNotificationChannel`\n- `MobileAppNotificationChannel`\n- `SlackNotificationChannel` (application module, separate from monitoring)\n- `DefaultNotificationCenter` (also implements `NotificationCenter`)\n\nRELEVANT_FILES_START\nmonitoring/src/main/java/org/thingsboard/monitoring/notification/channels/impl/SlackNotificationChannel.java | implements monitoring NotificationChannel\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MicrosoftTeamsNotificationChannel.java | implements NotificationChannel<MicrosoftTeamsNotificationTargetConfig, MicrosoftTeamsDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SmsNotificationChannel.java | implements NotificationChannel<User, SmsDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/EmailNotificationChannel.java | implements NotificationChannel<User, EmailDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MobileAppNotificationChannel.java | implements NotificationChannel<User, MobileAppDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SlackNotificationChannel.java | implements NotificationChannel<SlackConversation, SlackDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/DefaultNotificationCenter.java | implements NotificationChannel<User, WebDeliveryMethodNotificationTemplate>\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "60bd6ae0-5da4-4782-9ed2-f8ff0c51c622",
+  "total_cost_usd": 0.0180378,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 920,
+    "cache_read_input_tokens": 11736,
+    "output_tokens": 737,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 920,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 737,
+      "cacheReadInputTokens": 11736,
+      "cacheCreationInputTokens": 920,
+      "webSearchRequests": 0,
+      "costUSD": 0.0180378,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "da596245-aba4-4045-b52b-b1d85ec660cb",
+  "tool_calls": [
+    "Grep",
+    "Grep"
+  ]
+}

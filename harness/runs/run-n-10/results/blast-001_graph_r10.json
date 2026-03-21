@@ -1,0 +1,50 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 13470,
+  "duration_api_ms": 13404,
+  "num_turns": 4,
+  "result": "Note: `DeviceApiController$SessionCloseOnErrorCallback` is an inner class \u2014 its source file is `DeviceApiController.java`.\n\nRELEVANT_FILES_START\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java | calls deregisterSession directly\ncommon/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java | inner class SessionCloseOnErrorCallback calls deregisterSession\ncommon/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/session/DefaultLwM2MSessionManager.java | calls deregisterSession directly\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java | calls deregisterSession directly\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewaySessionHandler.java | calls deregisterSession directly\ncommon/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/SnmpTransportContext.java | calls deregisterSession directly\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "eb767d57-2bc4-4cd8-ba01-77ff23c20806",
+  "total_cost_usd": 0.026366549999999996,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 1101,
+    "cache_read_input_tokens": 33266,
+    "output_tokens": 816,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1101,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 816,
+      "cacheReadInputTokens": 33266,
+      "cacheCreationInputTokens": 1101,
+      "webSearchRequests": 0,
+      "costUSD": 0.026366549999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "5868012e-ef82-447e-bc9b-c31b1db9ed53",
+  "tool_calls": [
+    "mcp__code-graph__find_types",
+    "mcp__code-graph__query_graph",
+    "mcp__code-graph__query_graph"
+  ]
+}

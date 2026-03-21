@@ -1,0 +1,49 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 8603,
+  "duration_api_ms": 8463,
+  "num_turns": 3,
+  "result": "There are two `NotificationChannel` interfaces (one in `monitoring`, one in `application`), with 6 total implementing classes:\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MicrosoftTeamsNotificationChannel.java | implements NotificationChannel<MicrosoftTeamsNotificationTargetConfig, MicrosoftTeamsDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SmsNotificationChannel.java | implements NotificationChannel<User, SmsDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/EmailNotificationChannel.java | implements NotificationChannel<User, EmailDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/MobileAppNotificationChannel.java | implements NotificationChannel<User, MobileAppDeliveryMethodNotificationTemplate>\napplication/src/main/java/org/thingsboard/server/service/notification/channels/SlackNotificationChannel.java | implements NotificationChannel<SlackConversation, SlackDeliveryMethodNotificationTemplate> (application module)\nmonitoring/src/main/java/org/thingsboard/monitoring/notification/channels/impl/SlackNotificationChannel.java | implements NotificationChannel (monitoring module)\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "09d07e49-dde7-490b-b9c9-e99eee6362dc",
+  "total_cost_usd": 0.01987785,
+  "usage": {
+    "input_tokens": 4,
+    "cache_creation_input_tokens": 2103,
+    "cache_read_input_tokens": 10482,
+    "output_tokens": 589,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 2103,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 4,
+      "outputTokens": 589,
+      "cacheReadInputTokens": 10482,
+      "cacheCreationInputTokens": 2103,
+      "webSearchRequests": 0,
+      "costUSD": 0.01987785,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "31e4e0b9-2068-4028-bc56-1dc898623fc7",
+  "tool_calls": [
+    "Grep",
+    "Grep"
+  ]
+}

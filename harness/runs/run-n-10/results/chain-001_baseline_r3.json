@@ -1,0 +1,57 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 26637,
+  "duration_api_ms": 26225,
+  "num_turns": 11,
+  "result": "Both are interfaces. Implementations found:\n- `TbDashboardService` \u2192 `DefaultTbDashboardService`\n- `TbResourceService` \u2192 `DefaultTbResourceService`\n\nRELEVANT_FILES_START\napplication/src/main/java/org/thingsboard/server/controller/DashboardController.java | The controller under analysis; directly injects TbDashboardService and TbResourceService\napplication/src/main/java/org/thingsboard/server/service/entitiy/dashboard/TbDashboardService.java | Service interface directly injected into DashboardController (field: tbDashboardService)\napplication/src/main/java/org/thingsboard/server/service/entitiy/dashboard/DefaultTbDashboardService.java | Concrete implementation of TbDashboardService\napplication/src/main/java/org/thingsboard/server/service/resource/TbResourceService.java | Service interface directly injected into DashboardController (field: tbResourceService)\napplication/src/main/java/org/thingsboard/server/service/resource/DefaultTbResourceService.java | Concrete implementation of TbResourceService\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "58b53cd0-be79-4b69-95f3-8e5f56171826",
+  "total_cost_usd": 0.062424150000000005,
+  "usage": {
+    "input_tokens": 9,
+    "cache_creation_input_tokens": 6555,
+    "cache_read_input_tokens": 49803,
+    "output_tokens": 1525,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 6555,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 9,
+      "outputTokens": 1525,
+      "cacheReadInputTokens": 49803,
+      "cacheCreationInputTokens": 6555,
+      "webSearchRequests": 0,
+      "costUSD": 0.062424150000000005,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "25557b46-ad86-499a-8dec-a7f5ba7af352",
+  "tool_calls": [
+    "Glob",
+    "Read",
+    "Read",
+    "Read",
+    "Glob",
+    "Glob",
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep"
+  ]
+}

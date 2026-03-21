@@ -1,0 +1,51 @@
+{
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "duration_ms": 16654,
+  "duration_api_ms": 16061,
+  "num_turns": 5,
+  "result": "Here are all classes that implement `SessionMsgListener`, including direct and indirect implementations (via abstract base classes):\n\nRELEVANT_FILES_START\ncommon/transport/transport-api/src/main/java/org/thingsboard/server/common/transport/SessionMsgListener.java | the interface itself\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java | directly implements SessionMsgListener\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewayDeviceSessionContext.java | directly implements SessionMsgListener (abstract)\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/GatewayDeviceSessionContext.java | extends AbstractGatewayDeviceSessionContext (indirect impl)\ncommon/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/SparkplugDeviceSessionContext.java | extends AbstractGatewayDeviceSessionContext (indirect impl)\ncommon/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/LwM2mSessionMsgListener.java | directly implements SessionMsgListener\ncommon/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/session/DeviceSessionContext.java | directly implements SessionMsgListener\ncommon/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java | contains inner class HttpSessionListener implementing SessionMsgListener\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/AbstractSyncSessionCallback.java | directly implements SessionMsgListener (abstract)\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/GetAttributesSyncSessionCallback.java | extends AbstractSyncSessionCallback (indirect impl)\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/ToServerRpcSyncSessionCallback.java | extends AbstractSyncSessionCallback (indirect impl)\ncommon/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java | contains inner class CoapSessionListener implementing SessionMsgListener\nRELEVANT_FILES_END",
+  "stop_reason": "end_turn",
+  "session_id": "eb8bdd64-fd92-499a-b51c-4015ec11db23",
+  "total_cost_usd": 0.0324981,
+  "usage": {
+    "input_tokens": 6,
+    "cache_creation_input_tokens": 1508,
+    "cache_read_input_tokens": 26767,
+    "output_tokens": 1253,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 1508,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-sonnet-4-6": {
+      "inputTokens": 6,
+      "outputTokens": 1253,
+      "cacheReadInputTokens": 26767,
+      "cacheCreationInputTokens": 1508,
+      "webSearchRequests": 0,
+      "costUSD": 0.0324981,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    }
+  },
+  "permission_denials": [],
+  "fast_mode_state": "off",
+  "uuid": "f9c2fd83-d947-4feb-bcdf-a4b5428fe9f7",
+  "tool_calls": [
+    "Grep",
+    "Grep",
+    "Grep",
+    "Grep"
+  ]
+}
