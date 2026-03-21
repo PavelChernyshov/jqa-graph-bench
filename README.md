@@ -79,22 +79,3 @@ python run.py chain-002 graph
 ```
 
 Results go to `harness/results/`. Logs go to `harness/logs/`.
-
-## Structure
-
-```
-mcp-server/          MCP server (Python, FastMCP + neo4j driver)
-  server.py          4 tools: find_types, get_type_context, query_graph, get_graph_schema
-
-harness/             Structural question benchmark
-  run.py             Runner — loops questions x conditions, calls claude -p
-  data/              questions.json — 10 questions with answer_files and verification Cypher
-  prompts/           system_base.md, system_graph.md — agent instructions per condition
-  results/           Output JSON per run
-  runs/1-first/      Analysis and report for run 1
-
-subjects/thingsboard/
-  repo/              ThingsBoard source (git submodule)
-  .jqassistant.yml   jQAssistant config (embedded Neo4j store, analysis concepts)
-  jqa-scan.sh        CLI wrapper: scan, analyze, server, reset
-```
