@@ -17,14 +17,7 @@ Each run is isolated — no memory, no user settings, strict MCP config.
 
 ## Results
 
-See [harness/runs/1-first/REPORT.md](harness/runs/1-first/REPORT.md) for the latest benchmark results.
-
-| Condition | Avg F1 | Avg Turns | Total Cost |
-|-----------|--------|-----------|------------|
-| baseline  | 0.80   | 7.4       | $1.23      |
-| graph     | 0.98   | 3.7       | $0.58      |
-
-n=1 per condition. 10 questions, 20 total runs.
+See [harness/runs/](harness/runs/) for all runs and reports.
 
 ## Setup
 
