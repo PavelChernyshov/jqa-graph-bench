@@ -1,17 +1,19 @@
 # Code Graph Benchmark
 
-Measures whether a pre-built code graph helps an AI agent answer structural questions about a large codebase compared to file-only tools (Read/Glob/Grep).
+AI coding agents navigate codebases with text search — grep, glob, file reads. This works for most tasks, but fails on others: text search can't follow type hierarchies across modules, resolve which interface a field refers to, or find inherited dependencies. These failures are deterministic, not stochastic — the agent produces wrong results the same way every time.
+
+The problem isn't accuracy on individual tasks. It's predictability. If you can't tell in advance which tasks the agent will fail on, you have to review everything. The cost of an agent isn't tokens — it's the human attention required to verify its output. Reliable structural understanding is the prerequisite for delegation.
+
+This benchmark measures where text search breaks down and whether a pre-built code graph makes agent behavior more predictable.
 
 ## What this is
 
 An experiment harness that runs Claude against structural questions about [ThingsBoard](https://github.com/thingsboard/thingsboard) (528K lines Java, 14 Maven modules, Spring Boot) under two conditions:
 
 - **baseline** — file tools only (Read, Glob, Grep)
-- **graph** — file tools + MCP server backed by a Neo4j code graph (15.6K types, 124K methods, call/inheritance/dependency edges)
+- **graph** — file tools + a Neo4j code graph via MCP (15.6K types, 124K methods, call/inheritance/dependency edges extracted from bytecode by [jQAssistant](https://jqassistant.github.io/jqassistant/current/))
 
-The graph is extracted from compiled bytecode by [jQAssistant](https://jqassistant.github.io/jqassistant/current/). The MCP server exposes 4 tools: `find_types`, `get_type_context`, `query_graph`, `get_graph_schema`.
-
-Questions cover 3 categories: implementation discovery ("what implements X?"), blast radius ("what calls method Y?"), and dependency chains ("what services does controller Z depend on?").
+Questions cover 3 categories: find all implementations of an interface, find all callers of a method, find all service dependencies of a controller.
 
 Each run is isolated — no memory, no user settings, strict MCP config.
 
