@@ -1,0 +1,3 @@
+[submodule "subjects/thingsboard/repo"]
+	path = subjects/thingsboard/repo
+	url = https://github.com/thingsboard/thingsboard.git

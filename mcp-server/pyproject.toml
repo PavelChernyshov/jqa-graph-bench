@@ -1,0 +1,12 @@
+[project]
+name = "code-graph-mcp"
+version = "0.1.0"
+description = "MCP server for querying the code constraint graph in Neo4j"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=2.0.0",
+    "neo4j>=5.0.0",
+]
+
+[project.scripts]
+code-graph-mcp = "server:main"

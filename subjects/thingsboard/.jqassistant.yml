@@ -1,0 +1,16 @@
+jqassistant:
+  store:
+    uri: file:graph/store
+    embedded:
+      apoc-enabled: true
+      connector-enabled: true
+
+  scan:
+    continue-on-error: true
+
+  analyze:
+    concepts:
+      - java-classpath:Resolve
+      - java:PackageDependency
+      - java:ArtifactDependency
+      - java:JavaVersion

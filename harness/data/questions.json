@@ -1,0 +1,186 @@
+{
+  "impl-001": {
+    "category": "implementation_discovery",
+    "question": "What classes implement the SessionMsgListener interface? List every implementing class with its source file path.",
+    "verification_cypher": "MATCH (impl:Type)-[:IMPLEMENTS]->(iface:Type {name: 'SessionMsgListener'}) MATCH (a:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(impl) WITH impl, a, CASE WHEN impl.fqn CONTAINS '$' THEN split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(split(impl.fqn, '$')[0], '.', '/') + '.java' ELSE split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(impl.fqn, '.', '/') + '.java' END AS file RETURN DISTINCT impl.name, file",
+    "answer_files": [
+      "common/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewayDeviceSessionContext.java",
+      "common/transport/coap/src/main/java/org/thingsboard/server/transport/coap/callback/AbstractSyncSessionCallback.java",
+      "common/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java",
+      "common/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java",
+      "common/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/session/DeviceSessionContext.java",
+      "common/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/LwM2mSessionMsgListener.java",
+      "common/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java"
+    ],
+    "notes": "7 implementations across 5 transport modules (coap, http, lwm2m, mqtt, snmp). Two are inner classes (CoapSessionListener, HttpSessionListener). Names like DeviceSessionContext and MqttTransportHandler do not contain 'SessionMsgListener' — grep for 'implements SessionMsgListener' required."
+  },
+  "impl-002": {
+    "category": "implementation_discovery",
+    "question": "What classes implement the EntityFilter interface? List every implementing class with its source file path.",
+    "verification_cypher": "MATCH (impl:Type)-[:IMPLEMENTS]->(iface:Type {fqn: 'org.thingsboard.server.common.data.query.EntityFilter'}) MATCH (a:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(impl) RETURN impl.name, split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(impl.fqn, '.', '/') + '.java' AS file ORDER BY impl.name",
+    "answer_files": [
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/ApiUsageStateFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/AssetTypeFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/DeviceTypeFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/EdgeTypeFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/EntityListFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/EntityNameFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/EntitySearchQueryFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/EntityTypeFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/EntityViewTypeFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/RelationsQueryFilter.java",
+      "common/data/src/main/java/org/thingsboard/server/common/data/query/SingleEntityFilter.java"
+    ],
+    "notes": "11 implementations, all in common/data module in one package. All names contain 'Filter'. This is the grep-friendly baseline — 'implements EntityFilter' finds all of them."
+  },
+  "impl-003": {
+    "category": "implementation_discovery",
+    "question": "What classes implement the NotificationChannel interface? List every implementing class with its source file path.",
+    "verification_cypher": "MATCH (impl:Type)-[:IMPLEMENTS]->(iface:Type {fqn: 'org.thingsboard.server.service.notification.channels.NotificationChannel'}) MATCH (a:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(impl) RETURN impl.name, split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(impl.fqn, '.', '/') + '.java' AS file ORDER BY impl.name",
+    "answer_files": [
+      "application/src/main/java/org/thingsboard/server/service/notification/DefaultNotificationCenter.java",
+      "application/src/main/java/org/thingsboard/server/service/notification/channels/EmailNotificationChannel.java",
+      "application/src/main/java/org/thingsboard/server/service/notification/channels/MicrosoftTeamsNotificationChannel.java",
+      "application/src/main/java/org/thingsboard/server/service/notification/channels/MobileAppNotificationChannel.java",
+      "application/src/main/java/org/thingsboard/server/service/notification/channels/SlackNotificationChannel.java",
+      "application/src/main/java/org/thingsboard/server/service/notification/channels/SmsNotificationChannel.java",
+      "monitoring/src/main/java/org/thingsboard/monitoring/notification/channels/impl/SlackNotificationChannel.java"
+    ],
+    "notes": "7 implementations. DefaultNotificationCenter breaks the naming pattern (not named *Channel). Two SlackNotificationChannel classes exist in different modules (application vs monitoring). Grep must search across module boundaries."
+  },
+  "blast-001": {
+    "category": "blast_radius",
+    "question": "If the method signature of TransportService.deregisterSession() changes, what classes would need to be updated? List every caller class with its source file path.",
+    "verification_cypher": "MATCH (caller:Type)-[:DECLARES]->(cm:Method)-[:INVOKES]->(target:Method)<-[:DECLARES]-(t:Type {name: 'TransportService'}) WHERE target.name = 'deregisterSession' MATCH (a:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(caller) WITH caller, a, CASE WHEN caller.fqn CONTAINS '$' THEN split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(split(caller.fqn, '$')[0], '.', '/') + '.java' ELSE split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(caller.fqn, '.', '/') + '.java' END AS file RETURN DISTINCT file",
+    "answer_files": [
+      "common/transport/coap/src/main/java/org/thingsboard/server/transport/coap/client/DefaultCoapClientContext.java",
+      "common/transport/http/src/main/java/org/thingsboard/server/transport/http/DeviceApiController.java",
+      "common/transport/lwm2m/src/main/java/org/thingsboard/server/transport/lwm2m/server/session/DefaultLwM2MSessionManager.java",
+      "common/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/MqttTransportHandler.java",
+      "common/transport/mqtt/src/main/java/org/thingsboard/server/transport/mqtt/session/AbstractGatewaySessionHandler.java",
+      "common/transport/snmp/src/main/java/org/thingsboard/server/transport/snmp/SnmpTransportContext.java"
+    ],
+    "notes": "6 callers across 5 transport modules (coap, http, lwm2m, mqtt, snmp). One caller is inner class DeviceApiController$SessionCloseOnErrorCallback mapped to outer class file. Method name 'deregisterSession' is unique enough for grep but callers span many modules."
+  },
+  "blast-002": {
+    "category": "blast_radius",
+    "question": "If the method signature of StatsFactory.createStatsCounter() changes, what classes would need to be updated? List every caller class with its source file path.",
+    "verification_cypher": "MATCH (caller:Type)-[:DECLARES]->(cm:Method)-[:INVOKES]->(target:Method)<-[:DECLARES]-(t:Type {name: 'StatsFactory'}) WHERE target.name = 'createStatsCounter' MATCH (a:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(caller) WITH caller, a, CASE WHEN caller.fqn CONTAINS '$' THEN split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(split(caller.fqn, '$')[0], '.', '/') + '.java' ELSE split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(caller.fqn, '.', '/') + '.java' END AS file RETURN DISTINCT file",
+    "answer_files": [
+      "application/src/main/java/org/thingsboard/server/service/queue/TbCoreConsumerStats.java",
+      "application/src/main/java/org/thingsboard/server/service/queue/TbRuleEngineConsumerStats.java",
+      "application/src/main/java/org/thingsboard/server/service/housekeeper/stats/HousekeeperStatsService.java",
+      "application/src/main/java/org/thingsboard/server/service/queue/EdgeConsumerStats.java",
+      "common/script/script-api/src/main/java/org/thingsboard/script/api/AbstractScriptInvokeService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/util/BufferedRateExecutorStats.java",
+      "common/stats/src/main/java/org/thingsboard/server/common/stats/FstStatsServiceImpl.java",
+      "common/edqs/src/main/java/org/thingsboard/server/edqs/stats/DefaultEdqsStatsService.java"
+    ],
+    "notes": "8 callers across 5 modules (application, common/script, dao, common/stats, common/edqs). HousekeeperStatsService$HousekeeperStats is an inner class mapped to outer class file. Wide module spread makes grep expensive."
+  },
+  "blast-003": {
+    "category": "blast_radius",
+    "question": "If the method signature of AdminSettingsService.saveAdminSettings() changes, what classes would need to be updated? List every caller class with its source file path.",
+    "verification_cypher": "MATCH (caller:Type)-[:DECLARES]->(cm:Method)-[:INVOKES]->(target:Method)<-[:DECLARES]-(t:Type {name: 'AdminSettingsService'}) WHERE target.name = 'saveAdminSettings' MATCH (a:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(caller) WITH caller, a, CASE WHEN caller.fqn CONTAINS '$' THEN split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(split(caller.fqn, '$')[0], '.', '/') + '.java' ELSE split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(caller.fqn, '.', '/') + '.java' END AS file RETURN DISTINCT file",
+    "answer_files": [
+      "application/src/main/java/org/thingsboard/server/controller/AdminController.java",
+      "application/src/main/java/org/thingsboard/server/service/security/auth/jwt/settings/DefaultJwtSettingsService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/notification/DefaultNotificationSettingsService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/settings/DefaultSecuritySettingsService.java",
+      "application/src/main/java/org/thingsboard/server/service/install/DefaultSystemDataLoaderService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/trendz/DefaultTrendzSettingsService.java",
+      "application/src/main/java/org/thingsboard/server/service/security/auth/mfa/config/DefaultTwoFaConfigManager.java",
+      "application/src/main/java/org/thingsboard/server/service/mail/RefreshTokenExpCheckService.java",
+      "application/src/main/java/org/thingsboard/server/service/sync/vc/TbAbstractVersionControlSettingsService.java",
+      "application/src/main/java/org/thingsboard/server/service/mail/TbMailSender.java"
+    ],
+    "notes": "10 callers. Method name 'saveAdminSettings' is specific enough for grep but callers are scattered across application and dao modules in diverse packages (security, mail, notification, sync, install)."
+  },
+  "blast-004": {
+    "category": "blast_radius",
+    "question": "If the method signature of DeviceCredentialsService.findDeviceCredentialsByDeviceId() changes, what classes would need to be updated? List every caller class with its source file path.",
+    "verification_cypher": "MATCH (caller:Type)-[:DECLARES]->(cm:Method)-[:INVOKES]->(target:Method)<-[:DECLARES]-(t:Type {name: 'DeviceCredentialsService'}) WHERE target.name = 'findDeviceCredentialsByDeviceId' MATCH (a:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(caller) WITH caller, a, CASE WHEN caller.fqn CONTAINS '$' THEN split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(split(caller.fqn, '$')[0], '.', '/') + '.java' ELSE split(a.fileName, '/target/')[0] + '/src/main/java/' + replace(caller.fqn, '.', '/') + '.java' END AS file RETURN DISTINCT file",
+    "answer_files": [
+      "application/src/main/java/org/thingsboard/server/service/edge/rpc/processor/device/BaseDeviceProcessor.java",
+      "application/src/main/java/org/thingsboard/server/service/install/DefaultSystemDataLoaderService.java",
+      "application/src/main/java/org/thingsboard/server/service/entitiy/device/DefaultTbDeviceService.java",
+      "application/src/main/java/org/thingsboard/server/service/transport/DefaultTransportApiService.java",
+      "application/src/main/java/org/thingsboard/server/service/device/DeviceBulkImportService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/device/DeviceConnectivityServiceImpl.java",
+      "application/src/main/java/org/thingsboard/server/service/edge/rpc/processor/device/DeviceEdgeProcessor.java",
+      "application/src/main/java/org/thingsboard/server/service/sync/ie/exporting/impl/DeviceExportService.java",
+      "application/src/main/java/org/thingsboard/server/service/sync/ie/importing/impl/DeviceImportService.java",
+      "application/src/main/java/org/thingsboard/server/service/device/DeviceProvisionServiceImpl.java",
+      "dao/src/main/java/org/thingsboard/server/dao/device/DeviceServiceImpl.java",
+      "rule-engine/rule-engine-components/src/main/java/org/thingsboard/rule/engine/metadata/TbFetchDeviceCredentialsNode.java"
+    ],
+    "notes": "12 callers across 3 modules (application, dao, rule-engine). Long method name is specific for grep but callers span edge processors, import/export services, provisioning, and rule engine — diverse functional areas."
+  },
+  "chain-001": {
+    "category": "dependency_chain",
+    "question": "What service interfaces does DashboardController directly depend on, and what is the concrete implementation class for each? List the controller, every service interface, and every implementation class with their source file paths.",
+    "verification_cypher": "MATCH (ctrl:Type {name: 'DashboardController'})-[:DECLARES]->(m:Method)-[:INVOKES]->(sm:Method)<-[:DECLARES]-(svc:Type) WHERE svc:Interface AND svc.name ENDS WITH 'Service' MATCH (a_svc:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(svc) OPTIONAL MATCH (impl:Type)-[:IMPLEMENTS]->(svc) OPTIONAL MATCH (a_impl:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(impl) RETURN DISTINCT svc.name, split(a_svc.fileName, '/target/')[0] + '/src/main/java/' + replace(svc.fqn, '.', '/') + '.java' AS svc_file, impl.name, split(a_impl.fileName, '/target/')[0] + '/src/main/java/' + replace(impl.fqn, '.', '/') + '.java' AS impl_file",
+    "answer_files": [
+      "application/src/main/java/org/thingsboard/server/controller/DashboardController.java",
+      "common/dao-api/src/main/java/org/thingsboard/server/dao/tenant/TenantService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/tenant/TenantServiceImpl.java",
+      "common/dao-api/src/main/java/org/thingsboard/server/dao/user/UserService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/user/UserServiceImpl.java",
+      "common/dao-api/src/main/java/org/thingsboard/server/dao/dashboard/DashboardService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/dashboard/DashboardServiceImpl.java",
+      "common/dao-api/src/main/java/org/thingsboard/server/dao/customer/CustomerService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/customer/CustomerServiceImpl.java",
+      "application/src/main/java/org/thingsboard/server/service/security/permission/AccessControlService.java",
+      "application/src/main/java/org/thingsboard/server/service/security/permission/DefaultAccessControlService.java",
+      "application/src/main/java/org/thingsboard/server/service/entitiy/dashboard/TbDashboardService.java",
+      "application/src/main/java/org/thingsboard/server/service/entitiy/dashboard/DefaultTbDashboardService.java",
+      "application/src/main/java/org/thingsboard/server/service/resource/TbResourceService.java",
+      "application/src/main/java/org/thingsboard/server/service/resource/DefaultTbResourceService.java"
+    ],
+    "notes": "15 files: 1 controller + 7 service interfaces + 7 implementations. Services span common/dao-api (4) and application (3). Implementations span dao (4) and application (3). Two-hop traversal: controller -> interface -> implementation."
+  },
+  "chain-002": {
+    "category": "dependency_chain",
+    "question": "What service interfaces does AuthController directly depend on, and what is the concrete implementation class for each? List the controller, every service interface, and every implementation class with their source file paths.",
+    "verification_cypher": "MATCH (ctrl:Type {name: 'AuthController'})-[:DECLARES]->(m:Method)-[:INVOKES]->(sm:Method)<-[:DECLARES]-(svc:Type) WHERE svc:Interface AND svc.name ENDS WITH 'Service' MATCH (a_svc:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(svc) OPTIONAL MATCH (impl:Type)-[:IMPLEMENTS]->(svc) OPTIONAL MATCH (a_impl:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(impl) RETURN DISTINCT svc.name, split(a_svc.fileName, '/target/')[0] + '/src/main/java/' + replace(svc.fqn, '.', '/') + '.java' AS svc_file, impl.name, split(a_impl.fileName, '/target/')[0] + '/src/main/java/' + replace(impl.fqn, '.', '/') + '.java' AS impl_file",
+    "answer_files": [
+      "application/src/main/java/org/thingsboard/server/controller/AuthController.java",
+      "rule-engine/rule-engine-api/src/main/java/org/thingsboard/rule/engine/api/MailService.java",
+      "application/src/main/java/org/thingsboard/server/service/mail/DefaultMailService.java",
+      "common/cache/src/main/java/org/thingsboard/server/cache/limits/RateLimitService.java",
+      "common/cache/src/main/java/org/thingsboard/server/cache/limits/DefaultRateLimitService.java",
+      "common/dao-api/src/main/java/org/thingsboard/server/dao/user/UserService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/user/UserServiceImpl.java",
+      "application/src/main/java/org/thingsboard/server/service/security/system/SystemSecurityService.java",
+      "application/src/main/java/org/thingsboard/server/service/security/system/DefaultSystemSecurityService.java",
+      "application/src/main/java/org/thingsboard/server/service/security/auth/mfa/TwoFactorAuthService.java",
+      "application/src/main/java/org/thingsboard/server/service/security/auth/mfa/DefaultTwoFactorAuthService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/settings/SecuritySettingsService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/settings/DefaultSecuritySettingsService.java"
+    ],
+    "notes": "13 files: 1 controller + 6 service interfaces + 6 implementations. Services span 4 modules (rule-engine-api, common/cache, common/dao-api, application, dao). Widest module spread of chain questions."
+  },
+  "chain-003": {
+    "category": "dependency_chain",
+    "question": "What service interfaces does EdgeController directly depend on, and what is the concrete implementation class for each? List the controller, every service interface, and every implementation class with their source file paths.",
+    "verification_cypher": "MATCH (ctrl:Type {name: 'EdgeController'})-[:DECLARES]->(m:Method)-[:INVOKES]->(sm:Method)<-[:DECLARES]-(svc:Type) WHERE svc:Interface AND svc.name ENDS WITH 'Service' MATCH (a_svc:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(svc) OPTIONAL MATCH (impl:Type)-[:IMPLEMENTS]->(svc) OPTIONAL MATCH (a_impl:Artifact)-[:CONTAINS]->(:Package)-[:CONTAINS]->(impl) RETURN DISTINCT svc.name, split(a_svc.fileName, '/target/')[0] + '/src/main/java/' + replace(svc.fqn, '.', '/') + '.java' AS svc_file, impl.name, split(a_impl.fileName, '/target/')[0] + '/src/main/java/' + replace(impl.fqn, '.', '/') + '.java' AS impl_file",
+    "answer_files": [
+      "application/src/main/java/org/thingsboard/server/controller/EdgeController.java",
+      "common/dao-api/src/main/java/org/thingsboard/server/dao/edge/EdgeService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/edge/EdgeServiceImpl.java",
+      "common/dao-api/src/main/java/org/thingsboard/server/dao/rule/RuleChainService.java",
+      "dao/src/main/java/org/thingsboard/server/dao/rule/BaseRuleChainService.java",
+      "application/src/main/java/org/thingsboard/server/service/security/permission/AccessControlService.java",
+      "application/src/main/java/org/thingsboard/server/service/security/permission/DefaultAccessControlService.java",
+      "application/src/main/java/org/thingsboard/server/service/entitiy/edge/TbEdgeService.java",
+      "application/src/main/java/org/thingsboard/server/service/entitiy/edge/DefaultTbEdgeService.java",
+      "application/src/main/java/org/thingsboard/server/service/edge/rpc/EdgeRpcService.java",
+      "application/src/main/java/org/thingsboard/server/service/edge/rpc/EdgeGrpcService.java",
+      "application/src/main/java/org/thingsboard/server/service/edge/instructions/EdgeInstallInstructionsService.java",
+      "application/src/main/java/org/thingsboard/server/service/edge/instructions/DefaultEdgeInstallInstructionsService.java",
+      "application/src/main/java/org/thingsboard/server/service/edge/instructions/EdgeUpgradeInstructionsService.java",
+      "application/src/main/java/org/thingsboard/server/service/edge/instructions/DefaultEdgeUpgradeInstructionsService.java"
+    ],
+    "notes": "15 files: 1 controller + 7 service interfaces + 7 implementations. Implementation naming is non-standard: BaseRuleChainService (not RuleChainServiceImpl), EdgeGrpcService (not DefaultEdgeRpcService). Grep for 'implements EdgeRpcService' would miss EdgeGrpcService if searching for standard naming."
+  }
+}

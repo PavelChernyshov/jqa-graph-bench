@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+
+# Claude Code
+.claude/
+.mcp.json
+
+# Neo4j graph store data
+subjects/*/graph/store/
+
+# jQAssistant generated reports
+subjects/*/jqassistant/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Python
+.venv/
+__pycache__/
+*.egg-info/
+
+# MCP server logs
+mcp-server/logs/
+
+# Build artifacts
+target/
+build/
