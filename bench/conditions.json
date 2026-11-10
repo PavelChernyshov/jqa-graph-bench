@@ -1,0 +1,19 @@
+{
+  "conditions": {
+    "baseline": {
+      "tools": "Read,Glob,Grep",
+      "disallowed_tools": "mcp__code-graph__query_graph,mcp__code-graph__get_graph_schema,mcp__code-graph__find_types,mcp__code-graph__get_type_context",
+      "system_prompts": ["system_base.md"]
+    },
+    "graph": {
+      "tools": "Read,Glob,Grep,mcp__code-graph__query_graph,mcp__code-graph__get_graph_schema,mcp__code-graph__find_types,mcp__code-graph__get_type_context",
+      "system_prompts": ["system_base.md", "system_graph.md"]
+    }
+  },
+  "defaults": {
+    "runner": "claude",
+    "model": "sonnet",
+    "max_budget_usd": 0.30,
+    "mcp_config": "../.mcp.json"
+  }
+}

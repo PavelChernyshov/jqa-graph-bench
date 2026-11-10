@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
 """Extract structured reasoning traces from experiment JSONL logs.
 
-Usage: trace.py <run-name> [log-file ...]
+Usage: trace.py [--bench BENCH] <run-name> [log-file ...]
 Examples:
-  trace.py run-0-first                        # all logs in run
-  trace.py run-0-first impl-001_graph.jsonl    # specific log
+  trace.py 1-first                            # all logs in run
+  trace.py 1-first impl-001_graph.jsonl       # specific log
 """
 
+import argparse
 import json
 import sys
 from pathlib import Path
 
-RUNS_DIR = Path(__file__).parent
+HARNESS_DIR = Path(__file__).parent
+DEFAULT_BENCH = HARNESS_DIR.parent / "bench"
 
 
 def extract_trace(log_file: Path) -> list[dict]:
@@ -72,7 +74,6 @@ def extract_trace(log_file: Path) -> list[dict]:
                         tool_use_id = block.get("tool_use_id", "")
                         result_content = block.get("content", "")
                         is_error = block.get("is_error", False)
-                        # Summarize the result
                         if isinstance(result_content, str):
                             lines = result_content.strip().split("\n")
                             summary = f"{len(lines)} lines"
@@ -107,7 +108,6 @@ def format_trace(steps: list[dict]) -> str:
 
         if kind == "text":
             step_num += 1
-            # Truncate long text blocks
             text = step["content"]
             if len(text) > 500:
                 text = text[:500] + "..."
@@ -117,7 +117,6 @@ def format_trace(steps: list[dict]) -> str:
             step_num += 1
             tool = step["tool"]
             detail = step.get("detail", "")
-            # Shorten neo4j tool names
             if "graph" in tool or "neo4j" in tool:
                 tool = tool.split("__")[-1]
             lines.append(f"{step_num:2d}. [{tool}] {detail}")
@@ -133,34 +132,62 @@ def format_trace(steps: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def _collect_log_files(logs_dir: Path) -> list[Path]:
+    """Collect log files, handling both flat and model-subdirectory layouts."""
+    subdirs = [d for d in logs_dir.iterdir()
+               if d.is_dir() and not d.name.startswith(("_", "."))]
+    if subdirs:
+        files = []
+        for model_dir in sorted(subdirs):
+            for f in sorted(model_dir.glob("*.jsonl")):
+                files.append(f)
+        return files
+    return sorted(logs_dir.glob("*.jsonl"))
+
+
 def main():
-    if len(sys.argv) < 2:
-        print("Usage: trace.py <run-name> [log-file ...]")
-        print()
-        existing = sorted(p.name for p in RUNS_DIR.iterdir() if p.is_dir())
+    parser = argparse.ArgumentParser(description="Extract reasoning traces from experiment logs")
+    parser.add_argument("run_name", help="Run name (looked up under bench/runs/)")
+    parser.add_argument("log_files", nargs="*", help="Specific log files to trace (default: all)")
+    parser.add_argument("--bench", default=str(DEFAULT_BENCH), help="Bench directory (default: ./bench)")
+    args = parser.parse_args()
+
+    bench_dir = Path(args.bench).resolve()
+    runs_dir = bench_dir / "runs"
+
+    logs_dir = runs_dir / args.run_name / "logs"
+    if not logs_dir.exists():
+        print(f"Logs not found: {logs_dir}")
+        existing = sorted(p.name for p in runs_dir.iterdir() if p.is_dir()) if runs_dir.exists() else []
         if existing:
-            print("Available runs:")
+            print("\nAvailable runs:")
             for name in existing:
                 print(f"  {name}")
         sys.exit(1)
 
-    run_name = sys.argv[1]
-    logs_dir = RUNS_DIR / run_name / "logs"
-    if not logs_dir.exists():
-        print(f"Logs not found: {logs_dir}")
-        sys.exit(1)
-
-    if len(sys.argv) > 2:
-        files = [logs_dir / f for f in sys.argv[2:]]
+    if args.log_files:
+        files = []
+        for f_name in args.log_files:
+            candidate = logs_dir / f_name
+            if candidate.exists():
+                files.append(candidate)
+            else:
+                found = list(logs_dir.rglob(f_name))
+                if found:
+                    files.extend(found)
+                else:
+                    files.append(candidate)
     else:
-        files = sorted(logs_dir.glob("*.jsonl"))
+        files = _collect_log_files(logs_dir)
 
     for log_file in files:
         if not log_file.exists():
             print(f"Not found: {log_file}")
             continue
+        rel = log_file.relative_to(logs_dir)
+        label = str(rel)
         print(f"\n{'='*70}")
-        print(f"TRACE: {log_file.name}")
+        print(f"TRACE: {label}")
         print(f"{'='*70}")
         steps = extract_trace(log_file)
         print(format_trace(steps))

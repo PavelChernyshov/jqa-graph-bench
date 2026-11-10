@@ -24,6 +24,10 @@ __pycache__/
 # MCP server logs
 mcp-server/logs/
 
+# Bench working directories
+bench/results/
+bench/logs/
+
 # Build artifacts
 target/
 build/
